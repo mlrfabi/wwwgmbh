@@ -8,15 +8,12 @@ services:
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD_FILE: /run/secrets/db_user_password
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
-    secrets:
-      - db_root_password
-      - db_user_password
 
   adminer:
     image: adminer:latest
@@ -29,9 +26,3 @@ services:
 
 volumes:
   mariadb_data:
-
-secrets:
-  db_root_password:
-    file: ./secrets/db_root_password.txt
-  db_user_password:
-    file: ./secrets/db_user_password.txt
