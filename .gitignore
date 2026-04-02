@@ -1,0 +1,6 @@
+# sensible Konfig
+.env
+secrets/
+
+# optionale Exporte/Backups
+*.sql
